@@ -38,23 +38,30 @@ public class Fork {
 		x=xH;
 		y=yH;
 	}
-//	public synchronized boolean takable(int phiNum) {
-//		if(phi==-1) {
-//			phi=phiNum;
-//			return true;
+//	public void takeFork(int num) {
+//		synchronized(this) {
+//			whiel
 //		}
-//		else return false;
 //	}
-//	public synchronized void takenFromPhiNum(int phiNum) {
-//		phi=phiNum;
-//		if(num==phiNum)
-//			move(p.phis[phiNum].xRightHand,p.phis[phiNum].yRightHand);
-//		else 
-//			move(p.phis[phiNum].xLeftHand,p.phis[phiNum].yLeftHand);
-//	}
+	public boolean takable(int phiNum) {
+		if(phi==-1) {
+			return true;
+		}
+		else return false;
+	}
+	public void takenFromPhiNum(int phiNum) {
+		phi=phiNum;
+		if(num==phiNum)
+			move(p.phis[phiNum].xRightHand,p.phis[phiNum].yRightHand);
+		else 
+			move(p.phis[phiNum].xLeftHand,p.phis[phiNum].yLeftHand);
+	}
 	public void returnFork() {
+		synchronized(this) {
 		move(xDefault,yDefault);
 		phi=-1;
+		this.notifyAll();
+		}
 	}
 	public void draw(Graphics2D g2) {
 		g2.drawImage(image,x,y,null);

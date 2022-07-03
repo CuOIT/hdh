@@ -50,6 +50,7 @@ import main.Panel;
 			if(p.solutionNum==4) {
 				int j=num%2;
 				takeFork((num+j)%5);
+				sleep(300);
 				takeFork((num+1-j)%5);
 				}
 			else if(p.solutionNum==5) {
@@ -107,13 +108,18 @@ import main.Panel;
 		}
 		
 		private void takeFork(int i) throws InterruptedException {
-				while(p.forks[i].phi!=-1) waiting(i);	
+			synchronized(p.forks[i]) {
+				while(!p.forks[i].takable(num)) {
+					p.forks[i].wait();
+				}
 				p.forks[i].phi=num;
 				if(i==num)
 					p.forks[i].move(xRightHand,yRightHand);
 				else 
 					p.forks[i].move(xLeftHand,yLeftHand);
+				System.out.println(num+" da lay dia");
 		}
+			}
 		
 		private void thinking() throws InterruptedException {
 			sleep((long)(Math.random()*1000+2000));
