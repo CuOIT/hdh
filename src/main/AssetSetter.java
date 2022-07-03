@@ -10,7 +10,6 @@ public class AssetSetter {
 	public AssetSetter(Panel p) {
 		this.p=p;
 	}
-	
 
 	public void setPhis() {
 		for(int i=0;i<5;i++) {
@@ -27,11 +26,11 @@ public class AssetSetter {
 	}
 	public void setFork() {
 		
-		p.forks[0]=new Fork(p,340,300);
-		p.forks[1]=new Fork(p,490,300);
-		p.forks[2]=new Fork(p,560,430);
-		p.forks[3]=new Fork(p,420,560);
-		p.forks[4]=new Fork(p,270,430);
+		p.forks[0]=new Fork(p,340,300,0);
+		p.forks[1]=new Fork(p,490,300,1);
+		p.forks[2]=new Fork(p,560,430,2);
+		p.forks[3]=new Fork(p,420,560,3);
+		p.forks[4]=new Fork(p,270,430,4);
 		
 	}
 }

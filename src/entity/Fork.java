@@ -14,9 +14,9 @@ public class Fork {
 	public BufferedImage image;
 	public int x,y;
 	public int xDefault,yDefault;
-	public boolean taken=false;
 	public int phi;
-	public Fork(Panel p,int xDefault,int yDefault) {
+	public Fork(Panel p,int xDefault,int yDefault,int num) {
+		this.num=num;
 		phi=-1;
 		this.p=p;
 		this.xDefault=xDefault;
@@ -38,11 +38,14 @@ public class Fork {
 		x=xH;
 		y=yH;
 	}
-//	public void takeFork(int num) {
-//		synchronized(this) {
-//			whiel
-//		}
-//	}
+	public void takeFork(int phiNum) throws InterruptedException {
+		synchronized(this) {
+			while(!takable(phiNum)) {
+				this.wait();
+			}
+			takenFromPhiNum(phiNum);
+		}
+	}
 	public boolean takable(int phiNum) {
 		if(phi==-1) {
 			return true;
