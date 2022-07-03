@@ -1,23 +1,34 @@
 
 	package main;
-	import	javax.swing.JFrame;
+	import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+
+import	javax.swing.JFrame;
+import javax.swing.JPanel;
 	public class Main {
+		
 		public static JFrame window;
 		public static void main(String[] args) {
 		window=new JFrame();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setResizable(false);
+		//window.setResizable(false);
 		window.setTitle("Dinning Philosopher");
+		window.setSize(new Dimension(1600,700));
+		window.setLayout(new FlowLayout());	
+		window.setBackground(Color.red);
 		Panel panel=new Panel();
+		UI_Panel ui_panel=new UI_Panel(panel);
 		panel.setUp();
 		window.add(panel);
-		
+		window.add(ui_panel);
 		window.pack();
-		
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
-		
-		
+		window.addKeyListener(panel.keyH);
 		panel.startThread();
 		}
 	}
