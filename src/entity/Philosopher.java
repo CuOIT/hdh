@@ -39,7 +39,7 @@ import main.Panel;
 	}
 		
 		public void start() {
-			Thread t=new Thread(this);
+			t=new Thread(this);
 			t.start();
 		}
 		
@@ -126,7 +126,7 @@ import main.Panel;
 			if(p.solutionNum==4) {
 				int j=num%2;
 				p.forks[(num+j)%5].takeFork(num);
-				t.sleep(300);
+				t.sleep(600);
 				p.forks[(num+1-j)%5].takeFork(num);
 				}
 			else if(p.solutionNum==5) {
@@ -149,23 +149,25 @@ import main.Panel;
 			}
 			if(p.forks[num%5].phi==num && p.forks[(num+1)%5].phi==num)
 				{
+					System.out.println("[ "+t.getId()+" ] dang an dia so "+num+((num+1)%5));
 					image=eating;
 					eatCounter++;
 					eatTotal++;
 					eatTotalInARound++;
-					t.sleep(2000);
+					t.sleep((long)(Math.random()*1000+2000));					
 					p.forks[num%5].returnFork();
 					p.forks[(num+1)%5].returnFork();
 					image=thinking;		
 				}
 		}
 		
-		private void waiting(int i) throws InterruptedException {
-				t.sleep(10);
-		}
+//		private void waiting(int i) throws InterruptedException {
+//				t.sleep(10);
+//		}
 		
 		private void thinking() throws InterruptedException {
 			t.sleep((long)(Math.random()*1000+2000));
+	
 		}
 		
 		private void require() throws InterruptedException {
@@ -194,7 +196,7 @@ import main.Panel;
 					if(eatTotalInARound>=10) eatTotalInARound-=10;
 					image=out;
 					obj.notify();
-					System.out.println(num+" ra ngoai");
+					//System.out.println("[ "+t.getId()+" ]"+" ra ngoai");
 					obj.wait();
 				}
 			}

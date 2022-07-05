@@ -18,6 +18,7 @@ public class AssetSetter {
 		}
 		Philosopher.eatTotal=0;
 		Philosopher.eatTotalInARound=0;
+		p.startTime=System.currentTimeMillis();
 		p.phis[0]=new Philosopher(p, 490,130,  370,220,460,220, 0);
 		p.phis[1]=new Philosopher(p, 650,270,  570,320,580,360, 1);
 		p.phis[2]=new Philosopher(p, 590,480,  510,500,470,560, 2);

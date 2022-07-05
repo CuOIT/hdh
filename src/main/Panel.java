@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -31,9 +32,12 @@ public class Panel extends JPanel implements Runnable{
 	public Object obj=new Object();
 	int FPS=60;
 	public Key_Handler keyH=new Key_Handler(this);
-	public AssetSetter aSet=new AssetSetter(this);// Class dùng để khởi tạo vị trí của các Phi và các Fork
+	public AssetSetter aSet=new AssetSetter(this);
+	long startTime=System.currentTimeMillis();
+	public Mouse_Listener mouseL=new Mouse_Listener(this, new UI_Button("", -1, this));
+	// Class dùng để khởi tạo vị trí của các Phi và các Fork
 	public Panel() {
-
+		this.addMouseListener(mouseL);
 		this.setPreferredSize(new Dimension(screenWidth,screenHeight));
 		this.setBackground(Color.WHITE);
 		this.setDoubleBuffered(true);
@@ -49,10 +53,6 @@ public class Panel extends JPanel implements Runnable{
 	public void startThread() {
 		thread=new Thread(this, "Renderer");
 		thread.start();
-		for(int i=0;i<5;i++)
-		{
-		//	phis[i].start();
-		}
 	}
 	public void startSolution0()
 	{	
@@ -195,11 +195,11 @@ public class Panel extends JPanel implements Runnable{
 		for(int i=0;i<5;i++) {
 			forks[i].draw(g2);
 			g2.setFont(g2.getFont().deriveFont(Font.BOLD,86F));
-			String text= String.valueOf(forks[i].phi);
-			int x=forks[i].x;
-			int y=forks[i].y;
-			g2.setColor(Color.blue);
-			g2.drawString(text,x,y);
+//			String text= String.valueOf(forks[i].phi);
+//			int x=forks[i].x;
+//			int y=forks[i].y;
+//			g2.setColor(Color.blue);
+//			g2.drawString(text,x,y);
 		}
 		
 		//Draw philosophers
@@ -207,20 +207,33 @@ public class Panel extends JPanel implements Runnable{
 			phis[i].draw(g2);
 			int x=phis[i].x-50;
 			int y=phis[i].y-50;
-			g2.setFont(g2.getFont().deriveFont(Font.BOLD,86F));
-			String text= String.valueOf(phis[i].eatCounter);
-			g2.setColor(Color.red);
-			g2.drawString(text,x,y);
 		}
+		
+		//Draw eatCounter
+			for(int i=0;i<5;i++) {
+				int x=900;
+				int y=50+30*i;
+				g2.setFont(g2.getFont().deriveFont(Font.PLAIN,20F));
+				String text= "Eat counter of phi "+i+" :"+String.valueOf(phis[i].eatCounter);
+				g2.setColor(Color.red);
+				g2.drawString(text,x,y);
+			}
 		//Draw eatTotal
-		String eatTotal_ui=String.valueOf(Philosopher.eatTotal);
-		g2.setFont(g2.getFont().deriveFont(Font.BOLD,86F));
-		int x=800;
-		int y=400;
-		g2.setColor(Color.cyan);
+		String eatTotal_ui="Total eat : "+String.valueOf(Philosopher.eatTotal);
+		g2.setFont(g2.getFont().deriveFont(Font.PLAIN,20));
+		int x=900;
+		int y=200;
+		g2.setColor(Color.RED);
 		g2.drawString(eatTotal_ui,x,y);
 		
-		g2.dispose();
+		
+		String time="Time : "+String.valueOf((System.currentTimeMillis()-startTime)/1000);
+		g2.setFont(g2.getFont().deriveFont(Font.PLAIN,20));
+		int xt=900;
+		int yt=230;
+		g2.setColor(Color.red);
+		g2.drawString(time,xt,yt);
+				g2.dispose();
 	}
 
 	

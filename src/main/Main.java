@@ -6,6 +6,9 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import	javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,10 +19,9 @@ import javax.swing.JPanel;
 		window=new JFrame();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//window.setResizable(false);
-		window.setTitle("Dinning Philosopher");
+		window.setTitle("Dinning Philosopher RUNNABLE");
 		window.setSize(new Dimension(1600,700));
 		window.setLayout(new FlowLayout());	
-		window.setBackground(Color.red);
 		Panel panel=new Panel();
 		UI_Panel ui_panel=new UI_Panel(panel);
 		panel.setUp();
@@ -30,5 +32,8 @@ import javax.swing.JPanel;
 		window.setVisible(true);
 		window.addKeyListener(panel.keyH);
 		panel.startThread();
+
 		}
-	}
+		
+		}
+

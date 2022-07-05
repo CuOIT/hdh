@@ -15,8 +15,6 @@ public abstract class Entity {
 		this.x=x;
 		this.y=y;
 	}
-	public void draw(Graphics2D g2) {
-		System.out.println("a");
-	}
+	public abstract void draw(Graphics2D g2);
 }
 
