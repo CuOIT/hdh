@@ -39,8 +39,7 @@ public class Panel extends JPanel implements Runnable{
 	// Class dùng để khởi tạo vị trí của các Phi và các Fork
 	public Panel() {
 		this.addMouseListener(mouseL);
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setPreferredSize(new Dimension((int)screenSize.getWidth()*2/3,(int)screenSize.getHeight()*2/3));
+		this.setPreferredSize(new Dimension(850,700));
 		this.setBackground(Color.WHITE);
 		this.setDoubleBuffered(true);
 		this.addKeyListener(keyH);

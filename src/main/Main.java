@@ -23,7 +23,7 @@ import javax.swing.JPanel;
 		window.setTitle("Dinning Philosopher RUNNABLE");
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		System.out.println((int)screenSize.getWidth()+" "+(int)screenSize.getHeight());
-		window.setPreferredSize(new Dimension((int)screenSize.getWidth()*5/6,(int)screenSize.getHeight()*2/3));
+		window.setPreferredSize(new Dimension(1200,700));
 		window.setLayout(new FlowLayout());	
 		Panel panel=new Panel();
 		UI_Panel ui_panel=new UI_Panel(panel);

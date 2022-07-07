@@ -19,9 +19,8 @@ public class UI_Panel extends JPanel {
 		button3=new UI_Button("Giai phap 3",3,p);
 		button4=new UI_Button("Giai phap 4",4,p);
 		button5=new UI_Button("Giai phap 5",5,p);
-		
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		setPreferredSize(new Dimension((int)screenSize.getWidth()/6-50,(int)screenSize.getHeight()*2/3-100));
+
+		setPreferredSize(new Dimension(300,600));
 		setLayout(new GridLayout(6,1,50,50));
 		setBackground(Color.white);
 		add(button0);
