@@ -3,6 +3,7 @@ package main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
@@ -19,7 +20,8 @@ public class UI_Panel extends JPanel {
 		button4=new UI_Button("Giai phap 4",4,p);
 		button5=new UI_Button("Giai phap 5",5,p);
 		
-		setPreferredSize(new Dimension(400,700));
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		setPreferredSize(new Dimension((int)screenSize.getWidth()/6-50,(int)screenSize.getHeight()*2/3-100));
 		setLayout(new GridLayout(6,1,50,50));
 		setBackground(Color.white);
 		add(button0);

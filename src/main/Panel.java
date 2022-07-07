@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -38,7 +39,8 @@ public class Panel extends JPanel implements Runnable{
 	// Class dùng để khởi tạo vị trí của các Phi và các Fork
 	public Panel() {
 		this.addMouseListener(mouseL);
-		this.setPreferredSize(new Dimension(screenWidth,screenHeight));
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setPreferredSize(new Dimension((int)screenSize.getWidth()*2/3,(int)screenSize.getHeight()*2/3));
 		this.setBackground(Color.WHITE);
 		this.setDoubleBuffered(true);
 		this.addKeyListener(keyH);
@@ -211,8 +213,8 @@ public class Panel extends JPanel implements Runnable{
 		
 		//Draw eatCounter
 			for(int i=0;i<5;i++) {
-				int x=900;
-				int y=50+30*i;
+				int x=20;
+				int y=20+30*i;
 				g2.setFont(g2.getFont().deriveFont(Font.PLAIN,20F));
 				String text= "Eat counter of phi "+i+" :"+String.valueOf(phis[i].eatCounter);
 				g2.setColor(Color.red);
@@ -221,16 +223,16 @@ public class Panel extends JPanel implements Runnable{
 		//Draw eatTotal
 		String eatTotal_ui="Total eat : "+String.valueOf(Philosopher.eatTotal);
 		g2.setFont(g2.getFont().deriveFont(Font.PLAIN,20));
-		int x=900;
-		int y=200;
+		int x=20;
+		int y=170;
 		g2.setColor(Color.RED);
 		g2.drawString(eatTotal_ui,x,y);
 		
 		
 		String time="Time : "+String.valueOf((System.currentTimeMillis()-startTime)/1000);
 		g2.setFont(g2.getFont().deriveFont(Font.PLAIN,20));
-		int xt=900;
-		int yt=230;
+		int xt=20;
+		int yt=200;
 		g2.setColor(Color.red);
 		g2.drawString(time,xt,yt);
 				g2.dispose();

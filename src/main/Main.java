@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -20,7 +21,9 @@ import javax.swing.JPanel;
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//window.setResizable(false);
 		window.setTitle("Dinning Philosopher RUNNABLE");
-		window.setSize(new Dimension(1600,700));
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		System.out.println((int)screenSize.getWidth()+" "+(int)screenSize.getHeight());
+		window.setPreferredSize(new Dimension((int)screenSize.getWidth()*5/6,(int)screenSize.getHeight()*2/3));
 		window.setLayout(new FlowLayout());	
 		Panel panel=new Panel();
 		UI_Panel ui_panel=new UI_Panel(panel);
@@ -32,7 +35,7 @@ import javax.swing.JPanel;
 		window.setVisible(true);
 		window.addKeyListener(panel.keyH);
 		panel.startThread();
-
+		
 		}
 		
 		}
